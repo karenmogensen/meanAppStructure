@@ -62,18 +62,11 @@ gulp.task('gitLocal', function () {
   return gulp.src('./')
   	.pipe(git.add())
     .pipe(git.commit(message))
-    //.pipe(git.push('origin', 'master', '--tags'))
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('git', function () {
-  var pkg = require('./package.json');
-  var v = 'v' + pkg.version;
-  var message = 'Release ' + v;
-
+gulp.task('gitRemote', function () {
   return gulp.src('./')
-  	.pipe(git.add())
-    .pipe(git.commit(message))
     .pipe(git.push('origin', 'master', '--tags'))
     .pipe(gulp.dest('./'));
 });
